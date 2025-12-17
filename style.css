@@ -189,3 +189,9 @@ button:hover {
     height: 420px;
   }
 }
+
+.carta p {
+    white-space: pre-wrap; /* Isso respeita as quebras de linha do JavaScript */
+    font-family: 'Arial', sans-serif; /* Ou a fonte que preferir */
+    line-height: 1.6;
+}

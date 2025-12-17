@@ -4,63 +4,49 @@ const envelope = document.querySelector(".envelope");
 const carta = document.querySelector(".carta");
 const texto = document.querySelector(".carta p");
 
-const mensagem = 
-"Você é a melhor coisa que aconteceu na minha vida. Eu te amo muito! ❤️";
+const mensagem = `Hoje é o dia de uma pessoa muito incrível, maravilhosa e a mais brava que eu conheço kkkk.
+
+Meu amor, eu sei que o aniversário é seu kkk, mas quem ganhou o presente fui eu. Você é uma pessoa incrível, que me ensina todos os dias com a Ester, saiba que eu sou a pessoa mais sortuda desse mundo por ter você na minha vida, e que esse dia 18/12 virou um dia muito especial para mim.
+
+Meu amor, que Deus venha te abençoar nessa nova fase da sua vida, que seja uma temporada de conquistas e sonhos realizados.
+
+Meu amor, saiba que estarei aqui para tudo o que você precisar. Como diz a Palavra: feliz é o homem que encontra uma esposa. E hoje eu digo que desaprendi a viver sem você.
+
+E quero te deixar uma pergunta, Ester Oliveira:
+você quer casar comigo e viver uma vida ao meu lado?`;
 
 let index = 0;
 let intervalo;
 
 /* Efeito de digitação */
 function digitarTexto() {
-  texto.textContent = "";
-  index = 0;
+    texto.textContent = "";
+    index = 0;
 
-  intervalo = setInterval(() => {
-    if (index < mensagem.length) {
-      texto.textContent += mensagem.charAt(index);
-      index++;
-    } else {
-      clearInterval(intervalo);
-    }
-  }, 50);
+    // Limpa qualquer intervalo que já esteja rodando antes de começar um novo
+    clearInterval(intervalo);
+
+    intervalo = setInterval(() => {
+        if (index < mensagem.length) {
+            texto.textContent += mensagem.charAt(index);
+            index++;
+        } else {
+            clearInterval(intervalo);
+        }
+    }, 50);
 }
 
-/* Corações */
-function criarCoracoes() {
-  for (let i = 0; i < 15; i++) {
-    setTimeout(() => {
-      const coracao = document.createElement("div");
-      coracao.classList.add("coracao");
-      coracao.innerHTML = "❤️";
-      coracao.style.left = Math.random() * 100 + "vw";
-      coracao.style.fontSize = (16 + Math.random() * 20) + "px";
-      document.body.appendChild(coracao);
-
-      setTimeout(() => {
-        coracao.remove();
-      }, 4000);
-    }, i * 200);
-  }
-}
-
-/* OPEN */
+// Evento para abrir a carta
 openBtn.addEventListener("click", () => {
-  envelope.classList.add("aberto");
-  carta.classList.add("aberta");
-
-  // Vibração no celular
-  if (navigator.vibrate) {
-    navigator.vibrate([200, 100, 200]);
-  }
-
-  digitarTexto();
-  criarCoracoes();
+    envelope.classList.add("aberto");
+    carta.classList.add("aberta");
+    digitarTexto();
 });
 
-/* RESET */
+// Evento para resetar
 resetBtn.addEventListener("click", () => {
-  envelope.classList.remove("aberto");
-  carta.classList.remove("aberta");
-  texto.textContent = "";
-  clearInterval(intervalo);
+    envelope.classList.remove("aberto");
+    carta.classList.remove("aberta");
+    clearInterval(intervalo);
+    texto.textContent = "";
 });
